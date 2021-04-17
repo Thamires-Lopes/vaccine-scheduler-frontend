@@ -4,23 +4,32 @@ import * as yup from 'yup';
 import {
   Form, Button,
 } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import axios from '../../utils/api';
 import FormDatePicker from './formDatePicker';
 import FormTimePicker from './formTimePicker';
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
   lastName: yup.string().required(),
-  birthDate: yup.date()
+  birthday: yup.date()
     .required('Required')
     .nullable(),
-  vacineDay: yup.date()
+  vaccineDay: yup.date()
     .required('Required')
     .nullable(),
-  vacineTime: yup.string().required(),
+  vaccineTime: yup.date('Required')
+    .required()
+    .nullable(),
 });
 
-const onSubmit = (values) => {
-  console.log('SUBMIT', values);
+const onSubmit = async (values) => {
+  try {
+    await axios.post('/appointment', values);
+    toast.info('Successful appointment registration');
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
 };
 
 const RegisterForm = () => (
@@ -30,9 +39,9 @@ const RegisterForm = () => (
     initialValues={{
       firstName: '',
       lastName: '',
-      birthDate: null,
-      vacineDay: null,
-      vacineTime: '',
+      birthday: null,
+      vaccineDay: null,
+      vaccineTime: null,
     }}
   >
     {({
@@ -71,30 +80,30 @@ const RegisterForm = () => (
           <Form.Group>
             <Form.Label>Data de nascimento</Form.Label>
             <FormDatePicker
-              name="birthDate"
-              value={values.birthDate}
-              isValid={!errors.birthDate}
-              isInvalid={touched.birthDate && !!errors.birthDate}
+              name="birthday"
+              value={values.birthday}
+              isValid={!errors.birthday}
+              isInvalid={touched.birthday && !!errors.birthday}
               onChange={setFieldValue}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Dia da vacina</Form.Label>
             <FormDatePicker
-              name="vacineDay"
-              value={values.vacineDay}
-              isValid={!errors.vacineDay}
-              isInvalid={touched.vacineDay && !!errors.vacineDay}
+              name="vaccineDay"
+              value={values.vaccineDay}
+              isValid={!errors.vaccineDay}
+              isInvalid={touched.vaccineDay && !!errors.vaccineDay}
               onChange={setFieldValue}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Hora da vacina</Form.Label>
             <FormTimePicker
-              name="vacineTime"
-              value={values.vacineTime}
-              isValid={!errors.vacineTime}
-              isInvalid={touched.vacineTime && !!errors.vacineTime}
+              name="vaccineTime"
+              value={values.vaccineTime}
+              isValid={!errors.vaccineTime}
+              isInvalid={touched.vaccineTime && !!errors.vaccineTime}
               onChange={setFieldValue}
             />
           </Form.Group>
