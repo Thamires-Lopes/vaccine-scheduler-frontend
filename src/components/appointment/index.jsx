@@ -1,41 +1,14 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import {
   Card, Button, Alert,
 } from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
 import DropdownFilter from '../dropdownFilter';
-
-const formatDate = (date) => new Date(date).toLocaleDateString();
-
-const formatTime = (date) => `${new Date(date).getHours()}:00`;
-
-const calculateAge = (date) => {
-  const today = new Date();
-  const todayYear = today.getFullYear();
-  const todayMonth = today.getMonth() + 1;
-  const todayDay = today.getDate();
-
-  const birthdate = new Date(date);
-  const birthdateYear = birthdate.getFullYear();
-  const birthdateMonth = birthdate.getMonth() + 1;
-  const birthdateDay = birthdate.getDate();
-
-  let result = todayYear - birthdateYear;
-  if (todayMonth === birthdateMonth) {
-    if (todayDay < birthdateDay) {
-      result -= 1;
-    }
-  } else if (todayMonth < birthdateMonth) {
-    result -= 1;
-  }
-
-  return result;
-};
+import { formatDate, formatTime, calculateAge } from '../../utils/date.utils';
 
 const Appointment = () => {
-  const [vaccines, setVaccines] = useContext(VaccineContext);
+  const [vaccines] = useContext(VaccineContext);
   return (
     <div>
       <DropdownFilter />
