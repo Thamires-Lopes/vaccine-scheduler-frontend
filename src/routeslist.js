@@ -1,4 +1,5 @@
 import Home from './pages/home';
+import VaccineList from './pages/vaccineList';
 import VaccineRegister from './pages/vaccineRegister';
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
   },
   {
     path: '/list',
+    component: VaccineList,
   },
 ];
 
