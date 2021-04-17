@@ -1,8 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
-import { Card, Button, Alert } from 'react-bootstrap';
+import {
+  Card, Button, Alert,
+} from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
+import DropdownFilter from '../dropdownFilter';
 
 const formatDate = (date) => new Date(date).toLocaleDateString();
 
@@ -35,6 +38,7 @@ const Appointment = () => {
   const [vaccines, setVaccines] = useContext(VaccineContext);
   return (
     <div>
+      <DropdownFilter />
       {
         vaccines.length ? vaccines.map((vaccine, index) => (
           <Card key={vaccine._id}>
