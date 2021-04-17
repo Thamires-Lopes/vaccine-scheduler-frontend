@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Alert } from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
 
 const formatDate = (date) => new Date(date).toLocaleDateString();
@@ -57,7 +57,9 @@ const Appointment = () => {
             </Card.Body>
           </Card>
         )) : (
-          <div>Sem dados</div>
+          <Alert className="m-2" variant="dark">
+            Sem vacinas agendadas!
+          </Alert>
         )
       }
     </div>
