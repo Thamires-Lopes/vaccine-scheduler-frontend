@@ -3,6 +3,9 @@ import React, { useContext } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
 
+const formatDate = (date) => new Date(date).toLocaleDateString();
+const formatTime = (date) => `${new Date(date).getHours()}:00`;
+
 const Appointment = () => {
   const [vaccines, setVaccines] = useContext(VaccineContext);
   return (
@@ -14,13 +17,13 @@ const Appointment = () => {
             <Card.Body>
               <Card.Title>{`${vaccine.firstName} ${vaccine.lastName}`}</Card.Title>
               <Card.Text>
-                {`Aniversário: ${vaccine.birthday}`}
+                {`Aniversário: ${formatDate(vaccine.birthday)}`}
               </Card.Text>
               <Card.Text>
-                {`Data da vacina: ${vaccine.vaccineDay}`}
+                {`Data da vacina: ${formatDate(vaccine.vaccineDay)}`}
               </Card.Text>
               <Card.Text>
-                {`Horário da vacina: ${vaccine.vaccineTime}`}
+                {`Horário da vacina: ${formatTime(vaccine.vaccineTime)}`}
               </Card.Text>
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
