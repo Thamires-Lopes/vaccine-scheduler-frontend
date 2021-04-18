@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import { Dropdown } from 'react-bootstrap';
@@ -19,7 +20,7 @@ const DropdownFilter = () => {
 
       <Dropdown.Menu>
         {vaccines.length ? getUniqueDates().map((test) => (
-          <Dropdown.Item>{new Date(test).toLocaleDateString()}</Dropdown.Item>
+          <Dropdown.Item key={test._id}>{new Date(test).toLocaleDateString()}</Dropdown.Item>
         )) : (
           <Dropdown.Item>Another action</Dropdown.Item>
         )}
