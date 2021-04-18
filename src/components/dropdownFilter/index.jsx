@@ -12,7 +12,7 @@ const DropdownFilter = () => {
   };
 
   return (
-    <Dropdown>
+    <Dropdown className="m-2">
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Agrupe por data
       </Dropdown.Toggle>

@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import {
-  Card, Button, Alert,
+  Card, Button, Alert, Badge,
 } from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
 import DropdownFilter from '../dropdownFilter';
@@ -15,7 +15,14 @@ const Appointment = () => {
       {
         vaccines.length ? vaccines.map((vaccine, index) => (
           <Card key={vaccine._id}>
-            <Card.Header as="h5">{`Vacina: ${index}`}</Card.Header>
+            <Card.Header as="h5">
+              {`Vacina: ${index}`}
+              {vaccine.appointmentDone ? (
+                <Badge className="ml-4" variant="success">Aplicada</Badge>
+              ) : (
+                <Badge className="ml-4" variant="warning">Não aplicada</Badge>
+              )}
+            </Card.Header>
             <Card.Body>
               <Card.Title>{`${vaccine.firstName} ${vaccine.lastName}`}</Card.Title>
               <Card.Text>
@@ -30,6 +37,7 @@ const Appointment = () => {
               <Card.Text>
                 {`Horário da vacina: ${formatTime(vaccine.vaccineTime)}`}
               </Card.Text>
+
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>
           </Card>
