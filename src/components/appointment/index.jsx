@@ -60,7 +60,7 @@ const Appointment = () => {
                 </Card.Text>
               )}
 
-              <Button variant="primary" onClick={() => callModal(vaccine)}>Go somewhere</Button>
+              <Button variant="primary" onClick={() => callModal(vaccine)}>Editar agendamento</Button>
             </Card.Body>
           </Card>
         )) : (
