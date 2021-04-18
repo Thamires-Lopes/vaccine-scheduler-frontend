@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import {
-  Modal, Button, Form,
+  Modal, Button, Form, Badge,
 } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
 
   const onSubmit = async (values) => {
     try {
+      console.log(values);
       await axios.put(`/appointment/${vaccineToEdit._id}`, values);
       const updatedList = vaccines.map((vac) => {
         if (vac._id === vaccineToEdit._id) {
@@ -51,7 +52,8 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
       <Formik
         onSubmit={onSubmit}
         initialValues={{
-          observation: '',
+          observation: vaccineToEdit.observation,
+          appointmentDone: vaccineToEdit.appointmentDone,
         }}
       >
         {({
@@ -63,7 +65,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
             <Modal.Body>
               <Form className="m-4" noValidate>
                 <Form.Group>
-                  <Form.Label>Observation</Form.Label>
+                  <Form.Label>Observação</Form.Label>
                   <Form.Control
                     type="text"
                     name="observation"
@@ -71,6 +73,16 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
                     onChange={handleChange}
                   />
                 </Form.Group>
+                {values.appointmentDone ? (
+                  <Badge variant="success">Aplicada</Badge>
+                ) : (
+                  <Form.Check
+                    name="appointmentDone"
+                    type="checkbox"
+                    label="Vacina aplicada"
+                    onChange={handleChange}
+                  />
+                )}
               </Form>
             </Modal.Body>
             <Modal.Footer>
