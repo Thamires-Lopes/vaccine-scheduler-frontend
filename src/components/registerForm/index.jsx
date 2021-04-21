@@ -36,16 +36,38 @@ const onSubmit = async (values) => {
 const RegisterForm = () => {
   const [formValues, setFormValues] = useState({});
 
+  const checkDateFields = (form) => {
+    let birthday = null;
+    let vaccineDay = null;
+    let vaccineTime = null;
+    if (form.birthday != null) {
+      birthday = parseISO(form.birthday);
+    }
+    if (form.vaccineDay != null) {
+      vaccineDay = parseISO(form.vaccineDay);
+    }
+
+    if (form.vaccineTime != null) {
+      vaccineTime = parseISO(form.vaccineTime);
+    }
+
+    const newDateFields = {
+      birthday,
+      vaccineDay,
+      vaccineTime,
+    };
+
+    return newDateFields;
+  };
+
   const setInitialValues = () => {
     const initialValues = sessionStorage.getItem('values');
     if (initialValues) {
       let form = JSON.parse(initialValues);
-
+      const dateFields = checkDateFields(form);
       form = {
         ...form,
-        birthday: parseISO(form.birthday),
-        vaccineDay: parseISO(form.vaccineDay),
-        vaccineTime: parseISO(form.vaccineTime),
+        ...dateFields,
       };
 
       setFormValues(form);
