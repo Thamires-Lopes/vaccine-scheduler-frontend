@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import {
   Dropdown, ButtonGroup, Button, DropdownButton,
 } from 'react-bootstrap';
-import { AppointmentContext } from '../../VaccineContext';
+import { AppointmentContext } from '../../AppointmentContext';
 import { formatDate, formatTime } from '../../utils/date.utils';
 
 const DropdownFilter = () => {

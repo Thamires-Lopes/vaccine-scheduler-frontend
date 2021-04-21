@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import {
   Card, Button, Alert, Badge,
 } from 'react-bootstrap';
-import { AppointmentContext } from '../../VaccineContext';
+import { AppointmentContext } from '../../AppointmentContext';
 import DropdownFilter from '../dropdownFilter';
 import { formatDate, formatTime, calculateAge } from '../../utils/date.utils';
 import UpdateModal from '../modal';

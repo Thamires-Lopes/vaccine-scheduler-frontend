@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
-import { AppointmentContext } from '../../VaccineContext';
+import { AppointmentContext } from '../../AppointmentContext';
 import axios from '../../utils/api';
 
 const UpdateModal = ({ show, setModalShow, appointmentToEdit }) => {
