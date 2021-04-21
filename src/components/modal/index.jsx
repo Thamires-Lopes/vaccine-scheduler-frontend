@@ -6,21 +6,31 @@ import {
 } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
-import { VaccineContext } from '../../VaccineContext';
+import { AppointmentContext } from '../../VaccineContext';
 import axios from '../../utils/api';
 
-const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
-  const [vaccines, setVaccines, showAppointments, setShowAppointments] = useContext(VaccineContext);
+const UpdateModal = ({ show, setModalShow, appointmentToEdit }) => {
+  const [appointments, setAppointments,
+    showAppointments, setShowAppointments] = useContext(AppointmentContext);
 
   const onHide = () => {
     setModalShow(false);
   };
 
+  const fetchUpdatedAppointments = async () => {
+    try {
+      const response = await axios.get('/appointment');
+      setAppointments(response.data.appointments);
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
+
   const onSubmit = async (values) => {
     try {
-      await axios.put(`/appointment/${vaccineToEdit._id}`, values);
+      await axios.put(`/appointment/${appointmentToEdit._id}`, values);
       const updatedList = showAppointments.map((vac) => {
-        if (vac._id === vaccineToEdit._id) {
+        if (vac._id === appointmentToEdit._id) {
           const data = {
             ...vac,
             ...values,
@@ -30,6 +40,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
         return vac;
       });
       setShowAppointments(updatedList);
+      fetchUpdatedAppointments();
       toast.info('Agendamento atualizado com sucesso!');
       onHide();
     } catch (error) {
@@ -46,14 +57,14 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {`${vaccineToEdit.firstName} ${vaccineToEdit.lastName}`}
+          {`${appointmentToEdit.firstName} ${appointmentToEdit.lastName}`}
         </Modal.Title>
       </Modal.Header>
       <Formik
         onSubmit={onSubmit}
         initialValues={{
-          observation: vaccineToEdit.observation,
-          appointmentDone: vaccineToEdit.appointmentDone,
+          observation: appointmentToEdit.observation,
+          appointmentDone: appointmentToEdit.appointmentDone,
         }}
       >
         {({
