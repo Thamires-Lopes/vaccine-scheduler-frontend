@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import {
@@ -9,7 +10,7 @@ import { VaccineContext } from '../../VaccineContext';
 import axios from '../../utils/api';
 
 const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
-  const [vaccines, setVaccines] = useContext(VaccineContext);
+  const [vaccines, setVaccines, showAppointments, setShowAppointments] = useContext(VaccineContext);
 
   const onHide = () => {
     setModalShow(false);
@@ -18,7 +19,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
   const onSubmit = async (values) => {
     try {
       await axios.put(`/appointment/${vaccineToEdit._id}`, values);
-      const updatedList = vaccines.map((vac) => {
+      const updatedList = showAppointments.map((vac) => {
         if (vac._id === vaccineToEdit._id) {
           const data = {
             ...vac,
@@ -28,7 +29,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
         }
         return vac;
       });
-      setVaccines(updatedList);
+      setShowAppointments(updatedList);
       toast.info('Agendamento atualizado com sucesso!');
       onHide();
     } catch (error) {
