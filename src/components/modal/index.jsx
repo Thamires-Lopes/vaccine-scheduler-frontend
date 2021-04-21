@@ -17,7 +17,6 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
 
   const onSubmit = async (values) => {
     try {
-      console.log(values);
       await axios.put(`/appointment/${vaccineToEdit._id}`, values);
       const updatedList = vaccines.map((vac) => {
         if (vac._id === vaccineToEdit._id) {
@@ -30,7 +29,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
         return vac;
       });
       setVaccines(updatedList);
-      toast.info('Successful appointment update!');
+      toast.info('Agendamento atualizado com sucesso!');
       onHide();
     } catch (error) {
       toast.error(error.response.data.message);
@@ -89,7 +88,7 @@ const UpdateModal = ({ show, setModalShow, vaccineToEdit }) => {
               <Button onClick={handleSubmit}>
                 Enviar
               </Button>
-              <Button onClick={onHide}>Close</Button>
+              <Button onClick={onHide}>Cancelar</Button>
             </Modal.Footer>
           </div>
         )}
