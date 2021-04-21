@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React, { useContext, useState } from 'react';
 import {
@@ -9,7 +10,7 @@ import { formatDate, formatTime, calculateAge } from '../../utils/date.utils';
 import UpdateModal from '../modal';
 
 const Appointment = () => {
-  const [vaccines] = useContext(VaccineContext);
+  const [vaccines, setVaccines, showAppointments, setShowAppointments] = useContext(VaccineContext);
   const [modalShow, setModalShow] = useState(false);
   const [vaccineToEdit, setVaccineToEdit] = useState({});
 
@@ -26,7 +27,7 @@ const Appointment = () => {
         vaccineToEdit={vaccineToEdit}
       />
       {
-        vaccines.length ? vaccines.map((vaccine, index) => (
+        showAppointments.length ? showAppointments.map((vaccine, index) => (
           <Card key={vaccine._id}>
             <Card.Header as="h5">
               {`Vacina: ${index}`}

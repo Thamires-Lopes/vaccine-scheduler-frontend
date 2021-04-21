@@ -6,11 +6,13 @@ const VaccineContext = createContext();
 
 const VaccineContextProvider = ({ children }) => {
   const [vaccines, setVaccines] = useState([]);
+  const [showAppointments, setShowAppointments] = useState([]);
 
   const fetchVaccines = async () => {
     try {
       const response = await myAxios.get('/appointment');
       setVaccines(response.data.appointments);
+      setShowAppointments(response.data.appointments);
     } catch (e) {
       toast.error(e.message);
     }
@@ -21,7 +23,7 @@ const VaccineContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <VaccineContext.Provider value={[vaccines, setVaccines]}>
+    <VaccineContext.Provider value={[vaccines, setVaccines, showAppointments, setShowAppointments]}>
       {children}
     </VaccineContext.Provider>
   );
