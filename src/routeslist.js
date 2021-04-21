@@ -1,6 +1,6 @@
 import Home from './pages/home';
-import VaccineList from './pages/vaccineList';
-import VaccineRegister from './pages/vaccineRegister';
+import AppointmentList from './pages/appointmentList';
+import AppointmentRegister from './pages/appointmentRegister';
 
 const routes = [
   {
@@ -9,11 +9,11 @@ const routes = [
   },
   {
     path: '/register',
-    component: VaccineRegister,
+    component: AppointmentRegister,
   },
   {
     path: '/list',
-    component: VaccineList,
+    component: AppointmentList,
   },
 ];
 

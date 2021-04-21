@@ -2,10 +2,10 @@ import React from 'react';
 import Appointment from '../../components/appointment';
 import { AppointmentContextProvider } from '../../AppointmentContext';
 
-const VaccineList = () => (
+const AppointmentList = () => (
   <AppointmentContextProvider>
     <Appointment />
   </AppointmentContextProvider>
 );
 
-export default VaccineList;
+export default AppointmentList;
