@@ -1,6 +1,6 @@
 const formatDate = (date) => new Date(date).toLocaleDateString();
 
-const formatTime = (date) => `${new Date(date).getHours()}:00`;
+const formatTime = (date) => `${new Date(date).getHours()}`;
 
 const calculateAge = (date) => {
   const today = new Date();

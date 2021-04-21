@@ -5,22 +5,36 @@ import {
   Dropdown, ButtonGroup, Button, DropdownButton,
 } from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
+import { formatDate, formatTime } from '../../utils/date.utils';
 
 const DropdownFilter = () => {
   const [vaccines, setVaccines, showAppointments, setShowAppointments] = useContext(VaccineContext);
 
-  const getUniqueDates = () => {
-    const uniqueArr = [...new Set(vaccines.map((data) => data.vaccineDay))];
-    uniqueArr.sort((a, b) => {
+  const sort = (array) => {
+    array.sort((a, b) => {
       const newA = a.split('/').reverse().join('');
       const newB = b.split('/').reverse().join('');
       return newA.localeCompare(newB);
     });
+  };
+
+  const sortAppointments = () => {
+    const newArr = showAppointments.slice().sort((a, b) => {
+      const hourA = formatTime(a.vaccineTime);
+      const hourB = formatTime(b.vaccineTime);
+      return hourA - hourB;
+    });
+    setShowAppointments(newArr);
+  };
+
+  const getUniqueDates = () => {
+    const uniqueArr = [...new Set(vaccines.map((data) => data.vaccineDay))];
+    sort(uniqueArr);
     return uniqueArr;
   };
 
   const filter = (appointment) => {
-    const compare = new Date(appointment).toLocaleDateString();
+    const compare = formatDate(appointment);
     const newArray = vaccines.filter((vac) => (
       new Date(vac.vaccineDay).toLocaleDateString() === compare));
     setShowAppointments(newArray);
@@ -35,13 +49,13 @@ const DropdownFilter = () => {
               key={appointment._id}
               onClick={() => filter(appointment)}
             >
-              {new Date(appointment).toLocaleDateString()}
+              {formatDate(appointment)}
             </Dropdown.Item>
           )) : (
             <Dropdown.Item>Sem datas</Dropdown.Item>
           )}
         </DropdownButton>
-        <Button variant="secondary">Crescente</Button>
+        <Button onClick={() => sortAppointments()} variant="secondary">Crescente</Button>
         <Button variant="secondary">Decrescente</Button>
       </ButtonGroup>
 

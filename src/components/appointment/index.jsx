@@ -49,7 +49,7 @@ const Appointment = () => {
                 {`Data da vacina: ${formatDate(vaccine.vaccineDay)}`}
               </Card.Text>
               <Card.Text>
-                {`Horário da vacina: ${formatTime(vaccine.vaccineTime)}`}
+                {`Horário da vacina: ${formatTime(vaccine.vaccineTime)}:00`}
               </Card.Text>
               {vaccine.observation ? (
                 <Card.Text>
