@@ -4,11 +4,12 @@ import React, { useContext } from 'react';
 import {
   Dropdown, ButtonGroup, Button, DropdownButton,
 } from 'react-bootstrap';
-import { VaccineContext } from '../../VaccineContext';
+import { AppointmentContext } from '../../VaccineContext';
 import { formatDate, formatTime } from '../../utils/date.utils';
 
 const DropdownFilter = () => {
-  const [vaccines, setVaccines, showAppointments, setShowAppointments] = useContext(VaccineContext);
+  const [appointments, setAppointments,
+    showAppointments, setShowAppointments] = useContext(AppointmentContext);
 
   const sort = (array) => {
     array.sort((a, b) => {
@@ -31,14 +32,14 @@ const DropdownFilter = () => {
   };
 
   const getUniqueDates = () => {
-    const uniqueArr = [...new Set(vaccines.map((data) => data.vaccineDay))];
+    const uniqueArr = [...new Set(appointments.map((data) => data.vaccineDay))];
     sort(uniqueArr);
     return uniqueArr;
   };
 
   const filter = (appointment) => {
     const compare = formatDate(appointment);
-    const newArray = vaccines.filter((vac) => (
+    const newArray = appointments.filter((vac) => (
       new Date(vac.vaccineDay).toLocaleDateString() === compare));
     setShowAppointments(newArray);
   };
@@ -47,7 +48,7 @@ const DropdownFilter = () => {
     <>
       <ButtonGroup className="m-2">
         <DropdownButton as={ButtonGroup} title="Agrupe por data" id="bg-nested-dropdown">
-          {vaccines.length ? getUniqueDates().map((appointment) => (
+          {appointments.length ? getUniqueDates().map((appointment) => (
             <Dropdown.Item
               key={appointment._id}
               onClick={() => filter(appointment)}

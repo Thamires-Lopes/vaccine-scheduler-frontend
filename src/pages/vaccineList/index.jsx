@@ -1,11 +1,11 @@
 import React from 'react';
 import Appointment from '../../components/appointment';
-import { VaccineContextProvider } from '../../VaccineContext';
+import { AppointmentContextProvider } from '../../VaccineContext';
 
 const VaccineList = () => (
-  <VaccineContextProvider>
+  <AppointmentContextProvider>
     <Appointment />
-  </VaccineContextProvider>
+  </AppointmentContextProvider>
 );
 
 export default VaccineList;

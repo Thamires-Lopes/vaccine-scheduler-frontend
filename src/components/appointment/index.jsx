@@ -4,18 +4,19 @@ import React, { useContext, useState } from 'react';
 import {
   Card, Button, Alert, Badge,
 } from 'react-bootstrap';
-import { VaccineContext } from '../../VaccineContext';
+import { AppointmentContext } from '../../VaccineContext';
 import DropdownFilter from '../dropdownFilter';
 import { formatDate, formatTime, calculateAge } from '../../utils/date.utils';
 import UpdateModal from '../modal';
 
 const Appointment = () => {
-  const [vaccines, setVaccines, showAppointments, setShowAppointments] = useContext(VaccineContext);
+  const [appointments, setAppointments,
+    showAppointments, setShowAppointments] = useContext(AppointmentContext);
   const [modalShow, setModalShow] = useState(false);
-  const [vaccineToEdit, setVaccineToEdit] = useState({});
+  const [appointmentToEdit, setAppointmentToEdit] = useState({});
 
   const callModal = (vaccine) => {
-    setVaccineToEdit(vaccine);
+    setAppointmentToEdit(vaccine);
     setModalShow(true);
   };
   return (
@@ -24,36 +25,36 @@ const Appointment = () => {
       <UpdateModal
         show={modalShow}
         setModalShow={setModalShow}
-        vaccineToEdit={vaccineToEdit}
+        appointmentToEdit={appointmentToEdit}
       />
       {
-        showAppointments.length ? showAppointments.map((vaccine, index) => (
-          <Card key={vaccine._id}>
+        showAppointments.length ? showAppointments.map((appointment, index) => (
+          <Card key={appointment._id}>
             <Card.Header as="h5">
               {`Vacina: ${index + 1}`}
-              {vaccine.appointmentDone ? (
+              {appointment.appointmentDone ? (
                 <Badge className="ml-4" variant="success">Aplicada</Badge>
               ) : (
                 <Badge className="ml-4" variant="warning">Não aplicada</Badge>
               )}
             </Card.Header>
             <Card.Body>
-              <Card.Title>{`${vaccine.firstName} ${vaccine.lastName}`}</Card.Title>
+              <Card.Title>{`${appointment.firstName} ${appointment.lastName}`}</Card.Title>
               <Card.Text>
-                {`Aniversário: ${formatDate(vaccine.birthday)}`}
+                {`Aniversário: ${formatDate(appointment.birthday)}`}
               </Card.Text>
               <Card.Text>
-                {`Idade: ${calculateAge(vaccine.birthday)}`}
+                {`Idade: ${calculateAge(appointment.birthday)}`}
               </Card.Text>
               <Card.Text>
-                {`Data da vacina: ${formatDate(vaccine.vaccineDay)}`}
+                {`Data da vacina: ${formatDate(appointment.vaccineDay)}`}
               </Card.Text>
               <Card.Text>
-                {`Horário da vacina: ${formatTime(vaccine.vaccineTime)}:00`}
+                {`Horário da vacina: ${formatTime(appointment.vaccineTime)}:00`}
               </Card.Text>
-              {vaccine.observation ? (
+              {appointment.observation ? (
                 <Card.Text>
-                  {`Observação: ${vaccine.observation}`}
+                  {`Observação: ${appointment.observation}`}
                 </Card.Text>
               ) : (
                 <Card.Text>
@@ -61,7 +62,7 @@ const Appointment = () => {
                 </Card.Text>
               )}
 
-              <Button variant="primary" onClick={() => callModal(vaccine)}>Editar agendamento</Button>
+              <Button variant="primary" onClick={() => callModal(appointment)}>Editar agendamento</Button>
             </Card.Body>
           </Card>
         )) : (
