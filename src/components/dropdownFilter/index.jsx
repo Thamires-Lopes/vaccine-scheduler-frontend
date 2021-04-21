@@ -18,11 +18,14 @@ const DropdownFilter = () => {
     });
   };
 
-  const sortAppointments = () => {
+  const sortAppointments = (ascending) => {
     const newArr = showAppointments.slice().sort((a, b) => {
       const hourA = formatTime(a.vaccineTime);
       const hourB = formatTime(b.vaccineTime);
-      return hourA - hourB;
+      if (ascending) {
+        return hourA - hourB;
+      }
+      return hourB - hourA;
     });
     setShowAppointments(newArr);
   };
@@ -55,8 +58,8 @@ const DropdownFilter = () => {
             <Dropdown.Item>Sem datas</Dropdown.Item>
           )}
         </DropdownButton>
-        <Button onClick={() => sortAppointments()} variant="secondary">Crescente</Button>
-        <Button variant="secondary">Decrescente</Button>
+        <Button onClick={() => sortAppointments(true)} variant="secondary">Crescente</Button>
+        <Button onClick={() => sortAppointments(false)} variant="secondary">Decrescente</Button>
       </ButtonGroup>
 
     </>
