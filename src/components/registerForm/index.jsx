@@ -27,9 +27,9 @@ const schema = yup.object().shape({
 const onSubmit = async (values) => {
   try {
     await axios.post('/appointment', values);
-    toast.info('Successful appointment registration');
+    toast.info('Vacinação agendada com sucesso!');
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error.response.data.error);
   }
 };
 
