@@ -1,7 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import {
+  Dropdown, ButtonGroup, Button, DropdownButton,
+} from 'react-bootstrap';
 import { VaccineContext } from '../../VaccineContext';
 
 const DropdownFilter = () => {
@@ -9,6 +11,11 @@ const DropdownFilter = () => {
 
   const getUniqueDates = () => {
     const uniqueArr = [...new Set(vaccines.map((data) => data.vaccineDay))];
+    uniqueArr.sort((a, b) => {
+      const newA = a.split('/').reverse().join('');
+      const newB = b.split('/').reverse().join('');
+      return newA.localeCompare(newB);
+    });
     return uniqueArr;
   };
 
@@ -20,24 +27,25 @@ const DropdownFilter = () => {
   };
 
   return (
-    <Dropdown className="m-2">
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Agrupe por data
-      </Dropdown.Toggle>
+    <>
+      <ButtonGroup className="m-2">
+        <DropdownButton as={ButtonGroup} title="Agrupe por data" id="bg-nested-dropdown">
+          {vaccines.length ? getUniqueDates().map((appointment) => (
+            <Dropdown.Item
+              key={appointment._id}
+              onClick={() => filter(appointment)}
+            >
+              {new Date(appointment).toLocaleDateString()}
+            </Dropdown.Item>
+          )) : (
+            <Dropdown.Item>Sem datas</Dropdown.Item>
+          )}
+        </DropdownButton>
+        <Button variant="secondary">Crescente</Button>
+        <Button variant="secondary">Decrescente</Button>
+      </ButtonGroup>
 
-      <Dropdown.Menu>
-        {vaccines.length ? getUniqueDates().map((appointment) => (
-          <Dropdown.Item
-            key={appointment._id}
-            onClick={() => filter(appointment)}
-          >
-            {new Date(appointment).toLocaleDateString()}
-          </Dropdown.Item>
-        )) : (
-          <Dropdown.Item>Sem datas</Dropdown.Item>
-        )}
-      </Dropdown.Menu>
-    </Dropdown>
+    </>
   );
 };
 
