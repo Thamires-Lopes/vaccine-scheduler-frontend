@@ -30,7 +30,7 @@ const Appointment = () => {
         showAppointments.length ? showAppointments.map((vaccine, index) => (
           <Card key={vaccine._id}>
             <Card.Header as="h5">
-              {`Vacina: ${index}`}
+              {`Vacina: ${index + 1}`}
               {vaccine.appointmentDone ? (
                 <Badge className="ml-4" variant="success">Aplicada</Badge>
               ) : (
