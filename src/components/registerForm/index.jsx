@@ -11,8 +11,14 @@ import FormDatePicker from './formDatePicker';
 import FormTimePicker from './formTimePicker';
 
 const schema = yup.object().shape({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
+  firstName: yup.string()
+    .required()
+    .min(3)
+    .max(30),
+  lastName: yup.string()
+    .required()
+    .min(3)
+    .max(30),
   birthday: yup.date()
     .required('Required')
     .nullable(),
