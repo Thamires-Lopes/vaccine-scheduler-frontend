@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React, { useContext, useState } from 'react';
 import {
@@ -10,8 +9,8 @@ import { formatDate, formatTime, calculateAge } from '../../utils/date.utils';
 import UpdateModal from '../modal';
 
 const Appointment = () => {
-  const [appointments, setAppointments,
-    showAppointments, setShowAppointments] = useContext(AppointmentContext);
+  const { showAppointments } = useContext(AppointmentContext);
+
   const [modalShow, setModalShow] = useState(false);
   const [appointmentToEdit, setAppointmentToEdit] = useState({});
 

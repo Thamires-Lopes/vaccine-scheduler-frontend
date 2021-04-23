@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import {
@@ -10,8 +9,7 @@ import { AppointmentContext } from '../../AppointmentContext';
 import axios from '../../utils/api';
 
 const UpdateModal = ({ show, setModalShow, appointmentToEdit }) => {
-  const [appointments, setAppointments,
-    showAppointments, setShowAppointments] = useContext(AppointmentContext);
+  const { setAppointments, showAppointments, setShowAppointments } = useContext(AppointmentContext);
 
   const onHide = () => {
     setModalShow(false);

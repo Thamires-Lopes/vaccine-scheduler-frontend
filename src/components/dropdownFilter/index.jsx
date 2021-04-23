@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
+
 import React, { useContext } from 'react';
 import {
   Dropdown, ButtonGroup, Button, DropdownButton,
@@ -8,9 +8,7 @@ import { AppointmentContext } from '../../AppointmentContext';
 import { formatDate, formatTime } from '../../utils/date.utils';
 
 const DropdownFilter = () => {
-  const [appointments, setAppointments,
-    showAppointments, setShowAppointments] = useContext(AppointmentContext);
-
+  const { appointments, showAppointments, setShowAppointments } = useContext(AppointmentContext);
   const sort = (array) => {
     array.sort((a, b) => {
       const newA = a.split('/').reverse().join('');

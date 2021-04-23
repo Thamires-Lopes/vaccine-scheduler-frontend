@@ -24,7 +24,12 @@ const AppointmentContextProvider = ({ children }) => {
 
   return (
     <AppointmentContext.Provider
-      value={[appointments, setAppointments, showAppointments, setShowAppointments]}
+      value={{
+        appointments,
+        setAppointments,
+        showAppointments,
+        setShowAppointments,
+      }}
     >
       {children}
     </AppointmentContext.Provider>
