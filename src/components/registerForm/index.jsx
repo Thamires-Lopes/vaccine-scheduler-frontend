@@ -39,7 +39,7 @@ const onSubmit = async (values) => {
   }
 };
 
-const RegisterForm = () => {
+const RegisterForm = ({ history }) => {
   const [formValues, setFormValues] = useState({});
 
   const checkDateFields = (form) => {
@@ -145,6 +145,7 @@ const RegisterForm = () => {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Data de nascimento</Form.Label>
+                <br />
                 <FormDatePicker
                   name="birthday"
                   value={values.birthday}
@@ -155,6 +156,7 @@ const RegisterForm = () => {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Dia da vacina</Form.Label>
+                <br />
                 <FormDatePicker
                   name="vaccineDay"
                   value={values.vaccineDay}
@@ -165,6 +167,7 @@ const RegisterForm = () => {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Hora da vacina</Form.Label>
+                <br />
                 <FormTimePicker
                   name="vaccineTime"
                   value={values.vaccineTime}
@@ -175,6 +178,9 @@ const RegisterForm = () => {
               </Form.Group>
               <Button disabled={!isValid} onClick={handleSubmit}>
                 Enviar
+              </Button>
+              <Button onClick={() => history.push('/')} className="ml-4" variant="danger">
+                Voltar
               </Button>
             </Form>
           </div>

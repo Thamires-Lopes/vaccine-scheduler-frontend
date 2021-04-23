@@ -1,8 +1,8 @@
 import React from 'react';
 import RegisterForm from '../../components/registerForm';
 
-const AppointmentRegister = () => (
-  <RegisterForm />
+const AppointmentRegister = ({ history }) => (
+  <RegisterForm history={history} />
 );
 
 export default AppointmentRegister;
