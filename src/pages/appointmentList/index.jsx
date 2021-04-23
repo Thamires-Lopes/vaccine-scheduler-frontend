@@ -2,9 +2,9 @@ import React from 'react';
 import Appointment from '../../components/appointment';
 import { AppointmentContextProvider } from '../../AppointmentContext';
 
-const AppointmentList = () => (
+const AppointmentList = ({ history }) => (
   <AppointmentContextProvider>
-    <Appointment />
+    <Appointment history={history} />
   </AppointmentContextProvider>
 );
 

@@ -2,12 +2,12 @@
 
 import React, { useContext } from 'react';
 import {
-  Dropdown, ButtonGroup, Button, DropdownButton,
+  Dropdown, ButtonGroup, Button, DropdownButton, Row,
 } from 'react-bootstrap';
 import { AppointmentContext } from '../../AppointmentContext';
 import { formatDate, formatTime } from '../../utils/date.utils';
 
-const DropdownFilter = () => {
+const DropdownFilter = ({ history }) => {
   const { appointments, showAppointments, setShowAppointments } = useContext(AppointmentContext);
   const sort = (array) => {
     array.sort((a, b) => {
@@ -44,22 +44,25 @@ const DropdownFilter = () => {
 
   return (
     <>
-      <ButtonGroup className="m-2">
-        <DropdownButton as={ButtonGroup} title="Agrupe por data" id="bg-nested-dropdown">
-          {appointments.length ? getUniqueDates().map((appointment) => (
-            <Dropdown.Item
-              key={appointment._id}
-              onClick={() => filter(appointment)}
-            >
-              {formatDate(appointment)}
-            </Dropdown.Item>
-          )) : (
-            <Dropdown.Item>Sem datas</Dropdown.Item>
-          )}
-        </DropdownButton>
-        <Button onClick={() => sortAppointments(true)} variant="secondary">Crescente</Button>
-        <Button onClick={() => sortAppointments(false)} variant="secondary">Decrescente</Button>
-      </ButtonGroup>
+      <Row className="justify-content-md-center">
+        <ButtonGroup className="m-2">
+          <DropdownButton as={ButtonGroup} title="Agrupe por data" id="bg-nested-dropdown">
+            {appointments.length ? getUniqueDates().map((appointment) => (
+              <Dropdown.Item
+                key={appointment._id}
+                onClick={() => filter(appointment)}
+              >
+                {formatDate(appointment)}
+              </Dropdown.Item>
+            )) : (
+              <Dropdown.Item>Sem datas</Dropdown.Item>
+            )}
+          </DropdownButton>
+          <Button onClick={() => sortAppointments(true)} variant="secondary">Crescente</Button>
+          <Button onClick={() => sortAppointments(false)} variant="secondary">Decrescente</Button>
+          <Button onClick={() => history.push('/')} variant="danger">Voltar</Button>
+        </ButtonGroup>
+      </Row>
 
     </>
   );
