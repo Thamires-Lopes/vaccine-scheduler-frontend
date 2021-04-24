@@ -4,7 +4,7 @@ Projeto criado para o desafio da seleção de estagiários da Pitang
 Clone esse repositório: `git clone https://github.com/Thamires-Lopes/vaccine-scheduler-frontend.git`  
 Vá para a pasta do repositório  
 Para instalar as dependências: `yarn install`  
-Para rodar o projeto: `yarn dev` ou `yarn start`  
+Para rodar o projeto: `yarn start`  
 Para rodar os testes: `yarn test`  
 # Challenge: vaccine scheduler
 Project created for the Pitang intern selection challenge
@@ -12,7 +12,7 @@ Project created for the Pitang intern selection challenge
 Clone this repository: `git clone https://github.com/Thamires-Lopes/vaccine-scheduler-frontend.git`  
 Go to repository folder  
 Install dependencies: `yarn install`  
-Run project: `yarn dev` ou `yarn start`  
+Run project: `yarn start`  
 Run tests: `yarn test` 
 
 # Getting Started with Create React App
