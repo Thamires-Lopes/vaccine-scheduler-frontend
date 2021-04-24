@@ -5,6 +5,7 @@ Clone esse repositório: `git clone https://github.com/Thamires-Lopes/vaccine-sc
 Vá para a pasta do repositório  
 Para instalar as dependências: `yarn install`  
 Para rodar o projeto: `yarn dev` ou `yarn start`  
+Para rodar os testes: `yarn test`  
 # Challenge: vaccine scheduler
 Project created for the Pitang intern selection challenge
 ## How to use:
@@ -12,6 +13,7 @@ Clone this repository: `git clone https://github.com/Thamires-Lopes/vaccine-sche
 Go to repository folder  
 Install dependencies: `yarn install`  
 Run project: `yarn dev` ou `yarn start`  
+Run tests: `yarn test` 
 
 # Getting Started with Create React App
 
