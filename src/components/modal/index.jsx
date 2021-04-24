@@ -45,6 +45,7 @@ const UpdateModal = ({ show, setModalShow, appointmentToEdit }) => {
       toast.error(error.response.data.message);
     }
   };
+
   return (
     <Modal
       show={show}

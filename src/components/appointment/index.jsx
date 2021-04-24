@@ -14,10 +14,12 @@ const Appointment = ({ history }) => {
   const [modalShow, setModalShow] = useState(false);
   const [appointmentToEdit, setAppointmentToEdit] = useState({});
 
+  // function to call modal
   const callModal = (vaccine) => {
     setAppointmentToEdit(vaccine);
     setModalShow(true);
   };
+
   return (
     <>
       <DropdownFilter history={history} />

@@ -42,6 +42,7 @@ const onSubmit = async (values) => {
 const RegisterForm = ({ history }) => {
   const [formValues, setFormValues] = useState({});
 
+  // checking if date fields are not null to parse into an acceptable format in Formik
   const checkDateFields = (form) => {
     let birthday = null;
     let vaccineDay = null;
@@ -66,6 +67,8 @@ const RegisterForm = ({ history }) => {
     return newDateFields;
   };
 
+  /* checking if are values stored in session storage and
+  setting initial values in formik accordingly */
   const setInitialValues = () => {
     const initialValues = sessionStorage.getItem('values');
     if (initialValues) {
