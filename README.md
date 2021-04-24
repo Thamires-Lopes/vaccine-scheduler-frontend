@@ -1,3 +1,11 @@
+# Desafio agendamento da vacinas
+Projeto criado como desafio da seleção de estagiários da Pitang
+## Como usar:
+Clone esse projeto: `git clone https://github.com/Thamires-Lopes/vaccine-scheduler-frontend.git`  
+Vá para a pasta do repositório  
+Para instalar as dependências: `yarn install`  
+Para rodar o projeto: `yarn dev` ou `yarn start`  
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
